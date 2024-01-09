@@ -1,0 +1,63 @@
+.quiz-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  width: 40%;
+  padding: 50px;
+  border: 2px solid #FBA100;
+  border-radius: 15px;
+  background-color: rgba(251, 159, 0, 0.500);
+}
+
+form input {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid #2B8EAD;
+  background-color: rgba(43, 143, 173, 0.50);
+}
+
+form select {
+  width: 100%;
+  height: 30px;
+  border: none;
+  border-bottom: 1px solid #2B8EAD;
+  background-color: rgba(43, 143, 173, 0.50);
+}
+
+input:focus {
+  outline: none;
+}
+
+select:focus {
+  outline: none;
+}
+
+.btn {
+  width: 60%;
+  height: 30px;
+  margin-top: 20px;
+  border: 2px solid #2B8EAD;
+  border-radius: 5px;
+  background-color: #2B8EAD;
+  color: #FFF;
+  font-size: 16px;
+  padding: 0;
+  margin: auto;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn:hover {
+  border: 2px solid #2B8EAD;
+  background-color: #FFFFFF;
+  color: #2B8EAD;
+}
