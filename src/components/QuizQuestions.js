@@ -5,7 +5,6 @@ import "./QuizQuestions.css";
 
 function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
   const currentQuestion = questions[currentQuestionIndex];
-
   return (
     <div className="quiz-question shadow-lg">
       {currentQuestion && (
@@ -15,7 +14,7 @@ function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
             {currentQuestionIndex} / {questions.length}
           </h3>
           <fieldset>
-            <legend className="mb-5">
+            <legend className="mb-3">
               {decodeHtmlEntities(currentQuestion.question)}
             </legend>
             <QuizAnswers

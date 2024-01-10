@@ -9,6 +9,7 @@
   border: 2px solid #2B8EAD;
   border-radius: 15px;
   background-color: rgba(43, 143, 173, 0.500);
+  position: relative;
 }
 
 .quiz-question fieldset {

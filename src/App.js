@@ -41,9 +41,6 @@ function App() {
   };
 
   const handleAnswer = (question, answer, correctAnswer) => {
-    console.log("Question " + question);
-    console.log("Answer " + answer);
-    console.log("Correct Answer " + correctAnswer);
     setAnswers((prevAnswers) => [
       ...prevAnswers,
       { question, answer, correctAnswer },
