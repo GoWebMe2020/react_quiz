@@ -8,12 +8,16 @@ function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
 
   return (
     <div className="quiz-question">
-      <h3>{questions[0].category}</h3>
-      <h3>{currentQuestionIndex} / {questions.length}</h3>
-      <div>
-        {currentQuestion && (
+      {currentQuestion && (
+        <>
+          <h3>{questions[0].category}</h3>
+          <h3>
+            {currentQuestionIndex} / {questions.length}
+          </h3>
           <fieldset>
-            <legend className="mb-5">{decodeHtmlEntities(currentQuestion.question)}</legend>
+            <legend className="mb-5">
+              {decodeHtmlEntities(currentQuestion.question)}
+            </legend>
             <QuizAnswers
               answers={[
                 ...currentQuestion.incorrect_answers,
@@ -23,8 +27,8 @@ function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
               onAnswer={onAnswer}
             />
           </fieldset>
-        )}
-      </div>
+        </>
+      )}
     </div>
   );
 }

@@ -10,3 +10,10 @@
   border-radius: 15px;
   background-color: rgba(43, 143, 173, 0.500);
 }
+
+.quiz-question fieldset {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  width: 100%;
+}

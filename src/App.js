@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import QuizForm from "./components/QuizForm";
-import axios from "axios";
+import { fetchCategories, fetchQuestions } from "./utils/quizServices";
 import "./App.css";
 import QuizQuestions from "./components/QuizQuestions";
 import QuizScore from "./components/QuizScore";
@@ -12,18 +12,16 @@ function App() {
   const [score, setScore] = useState(0);
 
   useEffect(() => {
-    const fetchCategories = async () => {
+    const initFetch = async () => {
       try {
-        const response = await axios.get(
-          process.env.REACT_APP_QUIZ_CATEGORY_URL
-        );
-        setCategories(response.data.trivia_categories);
+        const categoryData = await fetchCategories();
+        setCategories(categoryData);
       } catch (error) {
         console.log(error);
       }
     };
 
-    fetchCategories();
+    initFetch();
   }, []);
 
   const handleFormSubmit = async (event) => {
@@ -34,10 +32,8 @@ function App() {
     const amount = formData.get("amount");
 
     try {
-      const response = await axios.get(
-        `${process.env.REACT_APP_QUIZ_QUESTIONS}?amount=${amount}&category=${category}&difficulty=${difficulty}&type=multiple`
-      );
-      setQuestions(response.data.results);
+      const questionsData = await fetchQuestions(amount, category, difficulty);
+      setQuestions(questionsData);
     } catch (error) {
       console.log(error);
     }

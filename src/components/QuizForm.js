@@ -2,10 +2,23 @@ import React from "react";
 import "./QuizForm.css";
 
 function QuizForm({ categories, onSubmit }) {
+  const capitalizeString = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
-  const capilizeString = (str) => {
-     return str.charAt(0).toUpperCase() + str.slice(1);
-  }
+  const renderCategories = () => {
+    return categories.map((category) => (
+      <option key={category.id} value={category.id}>
+        {category.name}
+      </option>
+    ));
+  };
+
+  const renderDifficulties = () => {
+    return ["easy", "medium", "hard"].map((difficulty) => (
+      <option key={difficulty} value={difficulty}>
+        {capitalizeString(difficulty)}
+      </option>
+    ));
+  };
 
   return (
     <div className="quiz-form">
@@ -16,13 +29,7 @@ function QuizForm({ categories, onSubmit }) {
             Category
           </label>
           <select name="category" id="category">
-            {categories.map((category) => {
-              return (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              );
-            })}
+            {renderCategories()}
           </select>
         </div>
         <div className="d-flex justify-content-start align-item-center w-100">
@@ -31,13 +38,7 @@ function QuizForm({ categories, onSubmit }) {
               Difficulty
             </label>
             <select name="difficulty" id="difficulty">
-              {["easy", "medium", "hard"].map((difficulty) => {
-                return (
-                  <option key={difficulty} value={difficulty}>
-                    {capilizeString(difficulty)}
-                  </option>
-                );
-              })}
+              {renderDifficulties()}
             </select>
           </div>
           <div className="mb-3 d-flex justify-content-start flex-column w-50 ps-1">
