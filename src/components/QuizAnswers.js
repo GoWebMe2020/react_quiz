@@ -1,21 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-function QuizAnswers(props) {
-  const { answers, index } = props;
+function QuizAnswers({ answers, onAnswer }) {
+  const [selectedAnswer, setSelectedAnswer] = useState(null);
+
+  useEffect(() => {
+    setSelectedAnswer(null);
+  }, [answers]);
+
+  const handleAnswerChange = (answer) => {
+    setSelectedAnswer(answer);
+    setTimeout(() => {
+      onAnswer();
+    }, 300);
+  };
+
   return (
     <div>
-      {answers &&
-        answers.map((a, answerIndex) => (
-          <div key={answerIndex}>
-            <input
-              type="radio"
-              id={`${index}-${answerIndex}`}
-              name={`question-${index}`}
-              value={a}
-            />
-            <label htmlFor={`${index}-${answerIndex}`}>{a}</label>
-          </div>
-        ))}
+      {answers.map((a, answerIndex) => (
+        <div key={answerIndex}>
+          <input
+            type="radio"
+            id={`answer-${answerIndex}`}
+            name="question"
+            value={a}
+            checked={a === selectedAnswer}
+            onChange={() => handleAnswerChange(a)}
+          />
+          <label htmlFor={`answer-${answerIndex}`}>{a}</label>
+        </div>
+      ))}
     </div>
   );
 }

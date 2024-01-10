@@ -7,6 +7,7 @@ import QuizQuestions from "./components/QuizQuestions";
 function App() {
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -38,10 +39,20 @@ function App() {
     }
   };
 
+  const handleAnswer = () => {
+    setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+  };
+
   return (
     <div className="App">
       <QuizForm categories={categories} onSubmit={handleFormSubmit} />
-      {questions.length > 0 && <QuizQuestions questions={questions} />}
+      {questions.length > 0 && (
+        <QuizQuestions
+          questions={questions}
+          currentQuestionIndex={currentQuestionIndex}
+          onAnswer={handleAnswer}
+        />
+      )}
     </div>
   );
 }
