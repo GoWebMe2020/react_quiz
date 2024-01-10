@@ -10,3 +10,13 @@
   border-radius: 15px;
   background-color: rgba(43, 143, 173, 0.500);
 }
+
+.correct {
+  color: #255200;
+  font-size: 18px;
+}
+
+.incorrect {
+  color: #ff0000;
+  font-size: 18px;
+}

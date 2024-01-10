@@ -10,6 +10,7 @@ function App() {
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [score, setScore] = useState(0);
+  const [answers, setAnswers] = useState([]);
 
   useEffect(() => {
     const initFetch = async () => {
@@ -39,7 +40,14 @@ function App() {
     }
   };
 
-  const handleAnswer = (answer, correctAnswer) => {
+  const handleAnswer = (question, answer, correctAnswer) => {
+    console.log("Question " + question);
+    console.log("Answer " + answer);
+    console.log("Correct Answer " + correctAnswer);
+    setAnswers((prevAnswers) => [
+      ...prevAnswers,
+      { question, answer, correctAnswer },
+    ]);
     if (answer === correctAnswer) {
       setScore((prevScore) => prevScore + 1);
     }
@@ -50,7 +58,11 @@ function App() {
     <div className="App">
       <QuizForm categories={categories} onSubmit={handleFormSubmit} />
       {currentQuestionIndex === questions.length && questions.length > 0 ? (
-        <QuizScore score={score} totalQuestions={questions.length} />
+        <QuizScore
+          score={score}
+          totalQuestions={questions.length}
+          answers={answers}
+        />
       ) : questions.length > 0 ? (
         <QuizQuestions
           questions={questions}

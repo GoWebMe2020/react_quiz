@@ -7,7 +7,7 @@ function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="quiz-question">
+    <div className="quiz-question shadow-lg">
       {currentQuestion && (
         <>
           <h3>{questions[0].category}</h3>
@@ -24,6 +24,7 @@ function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
                 currentQuestion.correct_answer,
               ]}
               correctAnswer={currentQuestion.correct_answer}
+              question={currentQuestion.question}
               onAnswer={onAnswer}
             />
           </fieldset>
