@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { decodeHtmlEntities } from "../utils/decodeHtmlEntities";
 import "./QuizAnswers.css";
 
-function QuizAnswers({ answers, onAnswer }) {
+function QuizAnswers({ answers, correctAnswer, onAnswer }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
 
   useEffect(() => {
@@ -12,7 +12,7 @@ function QuizAnswers({ answers, onAnswer }) {
   const handleAnswerChange = (answer) => {
     setSelectedAnswer(answer);
     setTimeout(() => {
-      onAnswer();
+      onAnswer(answer, correctAnswer);
     }, 300);
   };
 

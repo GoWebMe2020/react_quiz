@@ -19,6 +19,7 @@ function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
                 ...currentQuestion.incorrect_answers,
                 currentQuestion.correct_answer,
               ]}
+              correctAnswer={currentQuestion.correct_answer}
               onAnswer={onAnswer}
             />
           </fieldset>

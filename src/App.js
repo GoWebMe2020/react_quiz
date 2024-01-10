@@ -3,16 +3,20 @@ import QuizForm from "./components/QuizForm";
 import axios from "axios";
 import "./App.css";
 import QuizQuestions from "./components/QuizQuestions";
+import QuizScore from "./components/QuizScore";
 
 function App() {
   const [categories, setCategories] = useState([]);
   const [questions, setQuestions] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(process.env.REACT_APP_QUIZ_CATEGORY_URL);
+        const response = await axios.get(
+          process.env.REACT_APP_QUIZ_CATEGORY_URL
+        );
         setCategories(response.data.trivia_categories);
       } catch (error) {
         console.log(error);
@@ -25,9 +29,9 @@ function App() {
   const handleFormSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const category = formData.get('category');
-    const difficulty = formData.get('difficulty');
-    const amount = formData.get('amount');
+    const category = formData.get("category");
+    const difficulty = formData.get("difficulty");
+    const amount = formData.get("amount");
 
     try {
       const response = await axios.get(
@@ -39,19 +43,26 @@ function App() {
     }
   };
 
-  const handleAnswer = () => {
+  const handleAnswer = (answer, correctAnswer) => {
+    if (answer === correctAnswer) {
+      setScore((prevScore) => prevScore + 1);
+    }
     setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
   };
 
   return (
     <div className="App">
       <QuizForm categories={categories} onSubmit={handleFormSubmit} />
-      {questions.length > 0 && (
+      {currentQuestionIndex === questions.length && questions.length > 0 ? (
+        <QuizScore score={score} totalQuestions={questions.length} />
+      ) : questions.length > 0 ? (
         <QuizQuestions
           questions={questions}
           currentQuestionIndex={currentQuestionIndex}
           onAnswer={handleAnswer}
         />
+      ) : (
+        <div></div>
       )}
     </div>
   );
