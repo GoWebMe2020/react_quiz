@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { decodeHtmlEntities } from "../utils/decodeHtmlEntities";
+import "./QuizAnswers.css";
 
 function QuizAnswers({ answers, onAnswer }) {
   const [selectedAnswer, setSelectedAnswer] = useState(null);
@@ -15,18 +17,21 @@ function QuizAnswers({ answers, onAnswer }) {
   };
 
   return (
-    <div>
+    <div className="quiz-answers">
       {answers.map((a, answerIndex) => (
-        <div key={answerIndex}>
+        <div className="answer-option" key={answerIndex}>
           <input
             type="radio"
             id={`answer-${answerIndex}`}
             name="question"
             value={a}
+            className="radio-input"
             checked={a === selectedAnswer}
             onChange={() => handleAnswerChange(a)}
           />
-          <label htmlFor={`answer-${answerIndex}`}>{a}</label>
+          <label htmlFor={`answer-${answerIndex}`} className="radio-label">
+            {decodeHtmlEntities(a)}
+          </label>
         </div>
       ))}
     </div>

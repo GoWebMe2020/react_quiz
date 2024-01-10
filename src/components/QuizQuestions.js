@@ -1,16 +1,19 @@
 import React from "react";
 import QuizAnswers from "./QuizAnswers";
+import { decodeHtmlEntities } from "../utils/decodeHtmlEntities";
+import "./QuizQuestions.css";
 
 function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="quiz-questions">
-      <h2>Quiz Questions</h2>
+    <div className="quiz-question">
+      <h3>{questions[0].category}</h3>
+      <h3>{currentQuestionIndex} / {questions.length}</h3>
       <div>
         {currentQuestion && (
           <fieldset>
-            <legend>{currentQuestion.question}</legend>
+            <legend className="mb-5">{decodeHtmlEntities(currentQuestion.question)}</legend>
             <QuizAnswers
               answers={[
                 ...currentQuestion.incorrect_answers,
@@ -20,19 +23,6 @@ function QuizQuestions({ questions, currentQuestionIndex, onAnswer }) {
             />
           </fieldset>
         )}
-        {/* {questions.questions.map((q, index) => {
-          const answers = [...q.incorrect_answers, q.correct_answer];
-          answers.sort(() => Math.random() - 0.5);
-
-          return (
-            <fieldset key={index}>
-              <legend>{q.question}:</legend>
-              <div>
-                <QuizAnswers answers={answers} index={index} />
-              </div>
-            </fieldset>
-          );
-        })} */}
       </div>
     </div>
   );

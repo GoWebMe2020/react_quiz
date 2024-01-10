@@ -1,0 +1,38 @@
+.quiz-answers {
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
+}
+
+.answer-option {
+  display: flex;
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.radio-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #FFFFFF;
+  border: 2px solid #FBA100;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  cursor: pointer;
+  outline: none;
+  margin-right: 10px;
+  transition: 0.3s ease-in-out all;
+}
+
+.radio-input:hover {
+  width: 22px;
+  height: 22px;
+}
+
+.radio-input:checked {
+  background-color: #FBA100;
+}
+
+
