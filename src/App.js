@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import QuizForm from "./components/QuizForm";
 import axios from "axios";
 import "./App.css";
+import QuizQuestions from "./components/QuizQuestions";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -40,6 +41,7 @@ function App() {
   return (
     <div className="App">
       <QuizForm categories={categories} onSubmit={handleFormSubmit} />
+      {questions.length > 0 && <QuizQuestions questions={questions} />}
     </div>
   );
 }
